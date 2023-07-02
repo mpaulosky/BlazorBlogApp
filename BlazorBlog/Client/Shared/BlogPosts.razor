@@ -1,8 +1,9 @@
 ﻿@using BlazorBlog.Shared
 @using BlazorBlog.Client.Services
+@using BlazorBlog.Client.Pages
 @inject IBlogService BlogService
 
-@if(Posts != null)
+@if(Posts is not null)
 {
 	@foreach (var post in Posts)
 	{
@@ -26,9 +27,9 @@ else
 @code {
 	private List<BlogPost>? Posts { get; set; } = new();
 	
-	protected override void OnInitialized()
+	protected override async Task OnInitializedAsync()
 	{
-		Posts = BlogService.GetBlogPosts();
+		Posts = await BlogService.GetBlogPosts();
 	}
 	
 }
