@@ -1,0 +1,34 @@
+﻿@using BlazorBlog.Shared
+@using BlazorBlog.Client.Services
+@inject IBlogService BlogService
+
+@if(Posts != null)
+{
+	@foreach (var post in Posts)
+	{
+		<div class="card">
+			<div class="card-header">
+			<span>@post.Created.Date.ToShortDateString() : @post.Title </span>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">@post.Author</h5>
+				<p class="card-text">@post.Description</p>
+				<a href="/posts/@post.Url" class="btn btn-primary">Read more</a>
+			</div>
+		</div>
+	}
+}
+else
+{
+	<p>Loading...</p>
+}
+
+@code {
+	private List<BlogPost>? Posts { get; set; } = new();
+	
+	protected override void OnInitialized()
+	{
+		Posts = BlogService.GetBlogPosts();
+	}
+	
+}
