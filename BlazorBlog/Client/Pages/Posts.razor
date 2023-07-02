@@ -21,7 +21,8 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
-		_post = await BlogService.GetBlogPostByUrl(Url);
+		
+		_post = await BlogService.GetBlogPostByUrl(Url ?? throw new InvalidOperationException());
 	}
 
 }

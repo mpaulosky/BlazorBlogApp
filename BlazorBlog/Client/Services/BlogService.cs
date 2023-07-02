@@ -1,6 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
 
-using BlazorBlog.Client.Pages;
 using BlazorBlog.Shared;
 
 namespace BlazorBlog.Client.Services;
@@ -21,10 +21,14 @@ public class BlogService : IBlogService
 
 	public async Task<BlogPost?> GetBlogPostByUrl(string url)
 	{
-		ArgumentException.ThrowIfNullOrEmpty(url, nameof(url));
+		var result = await _httpClient.GetAsync($"api/blog/{url}");
+		if (result.StatusCode == HttpStatusCode.OK)
+		{
+			return await result.Content.ReadFromJsonAsync<BlogPost>();
+		}
 
-		var post = await _httpClient.GetFromJsonAsync<BlogPost?>($"api/blog/{url}");
-
-		return post;
+		const string message = "This post does not exist.";
+		Console.WriteLine(message);
+		return new BlogPost{Title = message};
 	}
 }
