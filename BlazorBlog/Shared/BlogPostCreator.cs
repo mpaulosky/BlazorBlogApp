@@ -10,7 +10,7 @@ public static class BlogPostCreator
 	/// <param name="keepId">bool whether to keep the generated Id</param>
 	/// <param name="useNewSeed">bool whether to use a seed other than 0</param>
 	/// <returns>BlogPost</returns>
-	public static BlogPost GetNewComment(bool keepId = false, bool useNewSeed = false)
+	public static BlogPost GetNewBlogPost(bool keepId = false, bool useNewSeed = false)
 	{
 		var post = GenerateFake(useNewSeed).Generate();
 
@@ -22,6 +22,18 @@ public static class BlogPostCreator
 		return post;
 	}
 
+	public static IEnumerable<BlogPost> GetNewBlogPosts()
+	{
+		var posts = GenerateFake().Generate(3);
+		
+		// foreach (var post in posts)
+		// {
+		// 	post.Id = 0;
+		// }
+
+		return posts;
+	}
+
 	/// <summary>
 	///   Gets a list of posts.
 	/// </summary>
@@ -31,7 +43,7 @@ public static class BlogPostCreator
 	public static List<BlogPost> GetBlogPosts(int numberOfPosts, bool useNewSeed = false)
 	{
 		var posts = GenerateFake(useNewSeed).Generate(numberOfPosts);
-
+		
 		return posts;
 	}
 

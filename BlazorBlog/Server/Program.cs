@@ -1,9 +1,12 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using BlazorBlog.Server.Data;
+
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 // Add services to the container.
-
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(connectionString));
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

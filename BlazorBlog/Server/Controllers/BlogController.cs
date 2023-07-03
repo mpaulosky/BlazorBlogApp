@@ -1,4 +1,5 @@
-﻿using BlazorBlog.Shared;
+﻿using BlazorBlog.Server.Data;
+using BlazorBlog.Shared;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,21 +9,42 @@ namespace BlazorBlog.Server.Controllers;
 [ApiController]
 public class BlogController : Controller
 {
-	private readonly List<BlogPost> _posts = BlogPostCreator.GetBlogPosts(3);
+	private readonly DataContext _context;
+
+	public BlogController(DataContext context)
+	{
+		_context = context;
+	}
 
 	[HttpGet]
 	public ActionResult<List<BlogPost>> GetBlogPosts()
 	{
-		return Ok(_posts);
+		return Ok(_context.BlogPosts.ToList());
 	}
 	
 	[HttpGet("{url}")]
-	public ActionResult<BlogPost?> GetBlogPostByUrl(string? url)
+	public ActionResult<BlogPost?> GetBlogPostByUrl(string url)
 	{
-		return string.IsNullOrWhiteSpace(url)
-			? NotFound("This post does not exist.")
-			: Ok(_posts.FirstOrDefault(x => string.Equals(x.Url.ToLower(),
-				url.ToLower(),
-				StringComparison.Ordinal)));
+		if (string.IsNullOrWhiteSpace(url))
+		{
+			return NotFound("This post does not exist.");
+		}
+		var post = _context.BlogPosts.FirstOrDefault(x => x.Url.ToLower() == url.ToLower());
+		
+		if (post == null)
+		{
+			return NotFound("This post does not exist.");
+		}
+
+		return post;
+	}
+	
+	[HttpPost]
+	public async Task<ActionResult<BlogPost>> CreateNewBlogPost(BlogPost blogPost)
+	{
+		await _context.BlogPosts.AddAsync(blogPost);
+		await _context.SaveChangesAsync();
+
+		return Ok(blogPost);
 	}
 }
