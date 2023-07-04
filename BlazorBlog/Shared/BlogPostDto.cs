@@ -8,7 +8,7 @@ public class BlogPostDto
 	[StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.",
 		MinimumLength = 1)]
 	public string Url { get; set; } = "";
-	
+
 	[Required]
 	[StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.",
 		MinimumLength = 1)]
@@ -32,8 +32,10 @@ public class BlogPostDto
 	[Required]
 	[DataType(DataType.DateTime)]
 	public DateTime Created { get; set; } = DateTime.Now;
-	
+
 	[Required]
 	[Display(Name = "Published")]
 	public bool IsPublished { get; set; } = true;
+
+	public string Image { get; set; }
 }

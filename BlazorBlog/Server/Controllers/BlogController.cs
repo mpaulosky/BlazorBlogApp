@@ -19,9 +19,9 @@ public class BlogController : Controller
 	[HttpGet]
 	public ActionResult<List<BlogPost>> GetBlogPosts()
 	{
-		return Ok(_context.BlogPosts.ToList());
+		return Ok(_context.BlogPosts.OrderByDescending(x => x.Created));
 	}
-	
+
 	[HttpGet("{url}")]
 	public ActionResult<BlogPost?> GetBlogPostByUrl(string url)
 	{
@@ -29,8 +29,9 @@ public class BlogController : Controller
 		{
 			return NotFound("This post does not exist.");
 		}
-		var post = _context.BlogPosts.FirstOrDefault(x => x.Url.ToLower() == url.ToLower());
-		
+
+		BlogPost? post = _context.BlogPosts.FirstOrDefault(x => x.Url.ToLower() == url.ToLower());
+
 		if (post == null)
 		{
 			return NotFound("This post does not exist.");
@@ -38,7 +39,7 @@ public class BlogController : Controller
 
 		return post;
 	}
-	
+
 	[HttpPost]
 	public async Task<ActionResult<BlogPost>> CreateNewBlogPost(BlogPost blogPost)
 	{

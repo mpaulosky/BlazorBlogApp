@@ -10,8 +10,7 @@ public class BlogPost
 	public DateTime? Updated { get; set; }
 	public string Author { get; set; } = "";
 	public string Description { get; set; } = "";
-	public string? ImageFileName { get; set; } = "";
+	public string? Image { get; set; } = "";
 	public bool IsPublished { get; set; } = true;
 	public bool IsDeleted { get; set; }
-	
 }

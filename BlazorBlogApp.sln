@@ -1,10 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Server", "BlazorBlog\Server\BlazorBlog.Server.csproj", "{6395F64D-7572-41A6-8E78-88EA0049D388}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33808.371
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Server", "BlazorBlog\Server\BlazorBlog.Server.csproj", "{6395F64D-7572-41A6-8E78-88EA0049D388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Client", "BlazorBlog\Client\BlazorBlog.Client.csproj", "{24F8BF2B-47F8-4F97-843A-BC89A6FB1688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Client", "BlazorBlog\Client\BlazorBlog.Client.csproj", "{24F8BF2B-47F8-4F97-843A-BC89A6FB1688}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBlog.Shared", "BlazorBlog\Shared\BlazorBlog.Shared.csproj", "{516720BB-4258-489D-9887-A0FDAF0BFE14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Shared", "BlazorBlog\Shared\BlazorBlog.Shared.csproj", "{516720BB-4258-489D-9887-A0FDAF0BFE14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{287EE2D7-085F-4718-9C67-B456A4D7931B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +32,11 @@ Global
 		{516720BB-4258-489D-9887-A0FDAF0BFE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516720BB-4258-489D-9887-A0FDAF0BFE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516720BB-4258-489D-9887-A0FDAF0BFE14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {185E257A-416F-4679-B1D0-18C999CBC749}
 	EndGlobalSection
 EndGlobal

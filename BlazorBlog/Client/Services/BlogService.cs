@@ -21,7 +21,7 @@ public class BlogService : IBlogService
 
 	public async Task<BlogPost?> GetBlogPostByUrl(string url)
 	{
-		var result = await _httpClient.GetAsync($"api/blog/{url}");
+		HttpResponseMessage result = await _httpClient.GetAsync($"api/blog/{url}");
 		if (result.StatusCode == HttpStatusCode.OK)
 		{
 			return await result.Content.ReadFromJsonAsync<BlogPost>();
@@ -29,12 +29,12 @@ public class BlogService : IBlogService
 
 		const string message = "This post does not exist.";
 		Console.WriteLine(message);
-		return new BlogPost{Title = message};
+		return new BlogPost { Title = message };
 	}
 
 	public async Task<BlogPost> CreateNewBlogPost(BlogPost blogPost)
 	{
-		var result = await _httpClient.PostAsJsonAsync("api/blog", blogPost);
+		HttpResponseMessage result = await _httpClient.PostAsJsonAsync("api/blog", blogPost);
 		if (result.StatusCode == HttpStatusCode.OK)
 		{
 			return (await result.Content.ReadFromJsonAsync<BlogPost>())!;

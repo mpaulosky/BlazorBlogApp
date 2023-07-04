@@ -12,7 +12,7 @@ public static class BlogPostCreator
 	/// <returns>BlogPost</returns>
 	public static BlogPost GetNewBlogPost(bool keepId = false, bool useNewSeed = false)
 	{
-		var post = GenerateFake(useNewSeed).Generate();
+		BlogPost? post = GenerateFake(useNewSeed).Generate();
 
 		if (!keepId)
 		{
@@ -24,8 +24,8 @@ public static class BlogPostCreator
 
 	public static IEnumerable<BlogPost> GetNewBlogPosts()
 	{
-		var posts = GenerateFake().Generate(3);
-		
+		List<BlogPost>? posts = GenerateFake().Generate(3);
+
 		// foreach (var post in posts)
 		// {
 		// 	post.Id = 0;
@@ -42,8 +42,8 @@ public static class BlogPostCreator
 	/// <returns>A List of BlogPost</returns>
 	public static List<BlogPost> GetBlogPosts(int numberOfPosts, bool useNewSeed = false)
 	{
-		var posts = GenerateFake(useNewSeed).Generate(numberOfPosts);
-		
+		List<BlogPost>? posts = GenerateFake(useNewSeed).Generate(numberOfPosts);
+
 		return posts;
 	}
 
@@ -54,7 +54,7 @@ public static class BlogPostCreator
 	/// <returns>Fake BlogPost</returns>
 	private static Faker<BlogPost> GenerateFake(bool useNewSeed = false)
 	{
-		var seed = 0;
+		int seed = 0;
 		if (useNewSeed)
 		{
 			seed = Random.Shared.Next(10, int.MaxValue);
@@ -62,7 +62,7 @@ public static class BlogPostCreator
 
 		return new Faker<BlogPost>()
 			.RuleFor(x => x.Id, f => f.Random.Int(0, 100))
-			.RuleFor(x => x.Url, f => $"{f.Name.FirstName()}-{f.Name.LastName()}" )
+			.RuleFor(x => x.Url, f => $"{f.Name.FirstName()}-{f.Name.LastName()}")
 			.RuleFor(c => c.Title, f => f.Lorem.Sentence(10))
 			.RuleFor(x => x.Description, f => f.Lorem.Paragraph(1))
 			.RuleFor(x => x.Content, f => f.Lorem.Paragraphs(10))
