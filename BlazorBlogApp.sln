@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBlog.Shared", "Blazor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{287EE2D7-085F-4718-9C67-B456A4D7931B}"
 	ProjectSection(SolutionItems) = preProject
+		..\IssueTracker\CODE_OF_CONDUCT.md = ..\IssueTracker\CODE_OF_CONDUCT.md
+		..\IssueTracker\CONTRIBUTING.md = ..\IssueTracker\CONTRIBUTING.md
+		..\IssueTracker\LICENSE = ..\IssueTracker\LICENSE
 		README.md = README.md
+		..\IssueTracker\SECURITY.md = ..\IssueTracker\SECURITY.md
 	EndProjectSection
 EndProject
 Global
