@@ -37,5 +37,5 @@ public class BlogPostDto
 	[Display(Name = "Published")]
 	public bool IsPublished { get; set; } = true;
 
-	public string Image { get; set; }
+	public string Image { get; set; } = string.Empty;
 }

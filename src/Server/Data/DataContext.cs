@@ -1,7 +1,5 @@
 ﻿using BlazorBlog.Shared;
 
-using Microsoft.EntityFrameworkCore;
-
 namespace BlazorBlog.Server.Data;
 
 public class DataContext : DbContext

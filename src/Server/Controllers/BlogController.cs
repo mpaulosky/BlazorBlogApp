@@ -1,5 +1,4 @@
-﻿using BlazorBlog.Server.Data;
-using BlazorBlog.Shared;
+﻿using BlazorBlog.Shared;
 
 using Microsoft.AspNetCore.Mvc;
 

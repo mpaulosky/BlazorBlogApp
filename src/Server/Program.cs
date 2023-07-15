@@ -1,10 +1,6 @@
-using BlazorBlog.Server.Data;
-
-using Microsoft.EntityFrameworkCore;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                          throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+													throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(connectionString));
 builder.Services.AddControllersWithViews();
