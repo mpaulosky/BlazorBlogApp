@@ -8,5 +8,7 @@
 // =============================================
 
 global using BlazorBlog.Server.Data;
+global using BlazorBlog.Shared;
 
+global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;

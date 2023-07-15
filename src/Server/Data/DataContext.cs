@@ -1,6 +1,4 @@
-﻿using BlazorBlog.Shared;
-
-namespace BlazorBlog.Server.Data;
+﻿namespace BlazorBlog.Server.Data;
 
 public class DataContext : DbContext
 {

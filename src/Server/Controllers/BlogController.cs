@@ -1,8 +1,4 @@
-﻿using BlazorBlog.Shared;
-
-using Microsoft.AspNetCore.Mvc;
-
-namespace BlazorBlog.Server.Controllers;
+﻿namespace BlazorBlog.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
