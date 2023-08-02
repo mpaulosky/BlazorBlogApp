@@ -1,4 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     BlogPostDto.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Shared
+// =============================================
 
 namespace BlazorBlog.Shared;
 
@@ -38,4 +45,6 @@ public class BlogPostDto
 	public bool IsPublished { get; set; } = true;
 
 	public string Image { get; set; } = string.Empty;
+
+	public bool IsDeleted { get; set; } = false;
 }

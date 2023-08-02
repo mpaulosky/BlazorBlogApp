@@ -1,4 +1,13 @@
-﻿namespace BlazorBlog.Server.Data;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     DataContext.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Server
+// =============================================
+
+namespace BlazorBlog.Server.Data;
 
 public class DataContext : DbContext
 {
@@ -8,7 +17,7 @@ public class DataContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		IEnumerable<BlogPost> posts = BlogPostCreator.GetNewBlogPosts();
+		IEnumerable<BlogPost> posts = BlogPostCreator.GetNewBlogPosts(3);
 
 		modelBuilder.Entity<BlogPost>().HasData(posts);
 	}

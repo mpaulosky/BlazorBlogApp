@@ -1,4 +1,11 @@
-using Bogus;
+// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     BlogPostCreator.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Shared
+// =============================================
 
 namespace BlazorBlog.Shared;
 
@@ -22,14 +29,14 @@ public static class BlogPostCreator
 		return post;
 	}
 
-	public static IEnumerable<BlogPost> GetNewBlogPosts()
+	public static List<BlogPost> GetNewBlogPosts(int numberOfPosts)
 	{
-		List<BlogPost>? posts = GenerateFake().Generate(3);
+		List<BlogPost>? posts = GenerateFake().Generate(numberOfPosts);
 
-		// foreach (var post in posts)
-		// {
-		// 	post.Id = 0;
-		// }
+		foreach (BlogPost post in posts)
+		{
+			post.Id = 0;
+		}
 
 		return posts;
 	}
@@ -40,7 +47,7 @@ public static class BlogPostCreator
 	/// <param name="numberOfPosts">The number of posts.</param>
 	/// <param name="useNewSeed">bool whether to use a seed other than 0</param>
 	/// <returns>A List of BlogPost</returns>
-	public static List<BlogPost> GetBlogPosts(int numberOfPosts, bool useNewSeed = false)
+	public static IEnumerable<BlogPost> GetBlogPosts(int numberOfPosts, bool useNewSeed = false)
 	{
 		List<BlogPost>? posts = GenerateFake(useNewSeed).Generate(numberOfPosts);
 
@@ -68,6 +75,9 @@ public static class BlogPostCreator
 			.RuleFor(x => x.Content, f => f.Lorem.Paragraphs(10))
 			.RuleFor(x => x.Author, f => f.Name.FullName())
 			.RuleFor(x => x.Created, f => f.Date.Past())
-			.UseSeed(seed);
+			.RuleFor(x => x.Updated, f => f.Date.Past())
+			.RuleFor(x => x.IsPublished, f => f.Random.Bool())
+			.RuleFor(x => x.IsDeleted, f => f.Random.Bool())
+			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(2500, 1667, false, false, 12)).UseSeed(seed);
 	}
 }

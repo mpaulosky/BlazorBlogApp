@@ -1,6 +1,15 @@
+// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     Program.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Server
+// =============================================
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-													throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                          throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(connectionString));
 builder.Services.AddControllersWithViews();

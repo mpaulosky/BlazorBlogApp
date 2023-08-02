@@ -1,7 +1,30 @@
-﻿namespace BlazorBlog.Shared;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     BlogPost.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Shared
+// =============================================
+
+namespace BlazorBlog.Shared;
 
 public class BlogPost
 {
+	public BlogPost() { }
+
+	public BlogPost(BlogPostDto source)
+	{
+		Url = source.Url;
+		Title = source.Title;
+		Content = source.Content;
+		Author = source.Author;
+		Description = source.Description;
+		Image = source.Image;
+		IsDeleted = source.IsDeleted;
+		Created = source.Created;
+	}
+
 	public int Id { get; set; }
 	public string Url { get; set; } = "";
 	public string Title { get; set; } = "";

@@ -1,4 +1,13 @@
-﻿namespace BlazorBlog.Server.Controllers;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     BlogController.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Server
+// =============================================
+
+namespace BlazorBlog.Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
