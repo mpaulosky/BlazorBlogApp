@@ -1,4 +1,13 @@
-﻿using System.Net;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     BlogService.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  BlazorBlog.Client
+// =============================================
+
+using System.Net;
 using System.Net.Http.Json;
 
 using BlazorBlog.Shared;
@@ -32,14 +41,9 @@ public class BlogService : IBlogService
 		return new BlogPost { Title = message };
 	}
 
-	public async Task<BlogPost> CreateNewBlogPost(BlogPost blogPost)
+	public async Task<BlogPost?> CreateNewBlogPost(BlogPost blogPost)
 	{
 		HttpResponseMessage result = await _httpClient.PostAsJsonAsync("api/blog", blogPost);
-		if (result.StatusCode == HttpStatusCode.OK)
-		{
-			return (await result.Content.ReadFromJsonAsync<BlogPost>())!;
-		}
-
-		return null!;
+		return result.StatusCode == HttpStatusCode.OK ? await result.Content.ReadFromJsonAsync<BlogPost>() : null;
 	}
 }

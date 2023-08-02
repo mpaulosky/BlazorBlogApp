@@ -1,24 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+		<PropertyGroup>
+				<TargetFramework>net7.0</TargetFramework>
+				<Nullable>enable</Nullable>
+				<ImplicitUsings>enable</ImplicitUsings>
+		</PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Bogus" Version="34.0.2" />
-        <PackageReference Include="Markdig" Version="0.31.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.9" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.9" PrivateAssets="all" />
-    </ItemGroup>
+		<ItemGroup>
+				<PackageReference Include="Bogus" Version="34.0.2" />
+				<PackageReference Include="Markdig" Version="0.31.0" />
+				<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.9" />
+				<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.9" PrivateAssets="all" />
+		</ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\Shared\BlazorBlog.Shared.csproj" />
-    </ItemGroup>
+		<ItemGroup>
+				<ProjectReference Include="..\Shared\BlazorBlog.Shared.csproj" />
+		</ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Components\" />
-    </ItemGroup>
+		<ItemGroup>
+			<Folder Include="Components\" />
+		</ItemGroup>
 
 </Project>
