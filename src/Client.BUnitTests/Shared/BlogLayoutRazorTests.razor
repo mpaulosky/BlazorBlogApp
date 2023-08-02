@@ -1,0 +1,25 @@
+@inherits TestContext
+
+@code
+{
+
+	[Fact]
+	public void BlogLayoutOnLoad_Test()
+	{
+		// Arrange
+		const string expected = @"
+			<div class=""container"">
+				<nav diff:ignore></nav>
+
+				<div class=""content px-4""></div>
+			</div>
+			";
+
+		// Act
+		var cut = Render(@<BlogLayout/>);
+
+		// Assert
+		cut.MarkupMatches(expected);
+	}
+
+}

@@ -1,16 +1,16 @@
-// ============================================
+﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     Usings.cs
+// File Name :     AssemblyInfo.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : BlazorBlogApp
 // Project Name :  Shared.UnitTests
 // =============================================
 
-global using System.Diagnostics.CodeAnalysis;
+[assembly: AssemblyTrait("Category", "Unit")]
 
-global using BlazorBlog.Shared;
+namespace Shared.UnitTests.Properties;
 
-global using FluentAssertions;
-
-global using Xunit;
+public class AssemblyInfo
+{
+}
