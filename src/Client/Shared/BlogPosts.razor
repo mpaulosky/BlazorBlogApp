@@ -1,13 +1,11 @@
-﻿@using BlazorBlog.Shared
-@using BlazorBlog.Client.Services
-@inject IBlogService BlogService
+﻿@inject IBlogService BlogService
 
 @if (Posts is not null)
 {
 	@foreach (var post in Posts)
 	{
 		<div class="card my-4">
-			<div class="card-img" style="background-image: url('@(post.Image ?? _placeholderImage)');"></div>
+			<div class="card-img" style="background-image: url('@(post.Image ?? PlaceHolderImage)');"></div>
 			<div class="card-body">
 				<h5 class="card-title">@post.Title</h5>
 				<p class="card-text">@post.Description</p>
@@ -21,17 +19,6 @@
 }
 else
 {
-	<p>Loading...</p>
+	<LoadingComponent />
 }
 
-@code {
-	private List<BlogPost>? Posts { get; set; } = new();
-
-	string _placeholderImage = "https://via.placeholder.com/1060x180";
-
-	protected override async Task OnInitializedAsync()
-	{
-		Posts = await BlogService.GetBlogPosts();
-	}
-
-}
