@@ -34,7 +34,8 @@ public class BlogController : Controller
 			return NotFound("This post does not exist.");
 		}
 
-		BlogPost? post = _context.BlogPosts.FirstOrDefault(x => x.Url.ToLower() == url.ToLower());
+		BlogPost? post = _context.BlogPosts.FirstOrDefault(x =>
+			string.Equals(x.Url.ToLower(), url.ToLower(), StringComparison.Ordinal));
 
 		if (post == null)
 		{

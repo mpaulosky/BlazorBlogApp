@@ -35,7 +35,7 @@ public static class BlogPostCreator
 
 		foreach (BlogPost post in posts)
 		{
-			post.Id = 0;
+			post.Id = -1;
 		}
 
 		return posts;
@@ -78,6 +78,7 @@ public static class BlogPostCreator
 			.RuleFor(x => x.Updated, f => f.Date.Past())
 			.RuleFor(x => x.IsPublished, f => f.Random.Bool())
 			.RuleFor(x => x.IsDeleted, f => f.Random.Bool())
-			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(2500, 1667, false, false, 12)).UseSeed(seed);
+			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(1060, 300, false, false, 12))
+			.UseSeed(seed);
 	}
 }

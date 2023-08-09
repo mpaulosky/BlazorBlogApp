@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.UnitTests", "Server.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.UnitTests", "Shared.UnitTests\Shared.UnitTests.csproj", "{25BC45C6-E5B5-4F1C-8B81-A3907B08852D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.BUnitTests", "Client.BUnitTests\Client.BUnitTests.csproj", "{61458A5E-83B3-41D9-81E3-2E13DB508B7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.BUnitTests", "Client.BUnitTests\Client.BUnitTests.csproj", "{61458A5E-83B3-41D9-81E3-2E13DB508B7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

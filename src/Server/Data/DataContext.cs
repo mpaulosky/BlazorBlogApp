@@ -17,8 +17,8 @@ public class DataContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		IEnumerable<BlogPost> posts = BlogPostCreator.GetNewBlogPosts(3);
+		//IEnumerable<BlogPost> posts = BlogPostCreator.GetNewBlogPosts(3);
 
-		modelBuilder.Entity<BlogPost>().HasData(posts);
+		//modelBuilder.Entity<BlogPost>().HasData(posts);
 	}
 }
