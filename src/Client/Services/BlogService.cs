@@ -7,43 +7,45 @@
 // Project Name :  BlazorBlog.Client
 // =============================================
 
-using System.Net;
-using System.Net.Http.Json;
-
-using BlazorBlog.Shared;
+using Flurl;
 
 namespace BlazorBlog.Client.Services;
 
 public class BlogService : IBlogService
 {
-	private readonly HttpClient _httpClient;
+	private readonly IFlurlClient _client;
 
-	public BlogService(HttpClient httpClient)
+	public BlogService(PerBaseUrlFlurlClientFactory perBaseUrlFlurlClientFactory, Url baseUrl)
 	{
-		_httpClient = httpClient;
+		_client = perBaseUrlFlurlClientFactory.Get(new Url(baseUrl.ToString()));
 	}
 
 	public async Task<List<BlogPost>?> GetBlogPosts()
 	{
-		return await _httpClient.GetFromJsonAsync<List<BlogPost>>("api/blog");
+		return await _client.Request()
+			.AppendPathSegment("api")
+			.AppendPathSegment("blog")
+			.GetJsonAsync<List<BlogPost>>();
 	}
 
 	public async Task<BlogPost?> GetBlogPostByUrl(string url)
 	{
-		HttpResponseMessage result = await _httpClient.GetAsync($"api/blog/{url}");
-		if (result.StatusCode == HttpStatusCode.OK)
-		{
-			return await result.Content.ReadFromJsonAsync<BlogPost>();
-		}
+		var result = await _client.Request()
+			.AppendPathSegment("api")
+			.AppendPathSegment("blog")
+			.AppendPathSegment($"{url}")
+			.GetAsync();
 
-		const string message = "This post does not exist.";
-		Console.WriteLine(message);
-		return new BlogPost { Title = message };
+		return result.StatusCode == 200 ? await result.GetJsonAsync<BlogPost>() : null;
 	}
 
 	public async Task<BlogPost?> CreateNewBlogPost(BlogPost blogPost)
 	{
-		HttpResponseMessage result = await _httpClient.PostAsJsonAsync("api/blog", blogPost);
-		return result.StatusCode == HttpStatusCode.OK ? await result.Content.ReadFromJsonAsync<BlogPost>() : null;
+		var result = await _client.Request()
+			.AppendPathSegment("api")
+			.AppendPathSegment("blog")
+			.PostJsonAsync(blogPost);
+
+		return result.StatusCode == 201 ? await result.GetJsonAsync<BlogPost>() : null;
 	}
 }

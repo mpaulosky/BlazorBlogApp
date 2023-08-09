@@ -7,8 +7,6 @@
 // Project Name :  BlazorBlog.Client
 // =============================================
 
-using BlazorBlog.Shared;
-
 namespace BlazorBlog.Client.Services;
 
 public interface IBlogService
@@ -17,5 +15,5 @@ public interface IBlogService
 
 	Task<BlogPost?> GetBlogPostByUrl(string url);
 
-	Task<BlogPost> CreateNewBlogPost(BlogPost blogPost);
+	Task<BlogPost?> CreateNewBlogPost(BlogPost blogPost);
 }
