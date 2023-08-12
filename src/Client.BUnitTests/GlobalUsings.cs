@@ -7,7 +7,6 @@
 // Project Name :  Client.BUnitTests
 // =============================================
 
-global using System.Net.Http;
 global using System.Threading.Tasks;
 
 global using FluentAssertions;

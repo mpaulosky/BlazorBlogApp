@@ -6,10 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Solution Items", "0. Solution Items", "{287EE2D7-085F-4718-9C67-B456A4D7931B}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.runsettings = .runsettings
 		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		..\README.md = ..\README.md
-		..\runsettings.xml = ..\runsettings.xml
 		..\SECURITY.md = ..\SECURITY.md
 	EndProjectSection
 EndProject
