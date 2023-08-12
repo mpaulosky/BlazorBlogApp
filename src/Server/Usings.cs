@@ -7,6 +7,8 @@
 // Project Name :  BlazorBlog.Server
 // =============================================
 
+global using System.Diagnostics.CodeAnalysis;
+
 global using BlazorBlog.Server.Data;
 global using BlazorBlog.Shared;
 

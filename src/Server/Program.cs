@@ -12,6 +12,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
                           throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(connectionString));
+builder.Services.AddSingleton<IBlogPostRepository, BlogPostRepository>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -35,7 +36,6 @@ app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 
 app.MapRazorPages();
 app.MapControllers();

@@ -13,44 +13,32 @@ namespace BlazorBlog.Server.Controllers;
 [ApiController]
 public class BlogController : Controller
 {
-	private readonly DataContext _context;
+	private readonly IBlogPostRepository _blogPostRepository;
 
-	public BlogController(DataContext context)
+	public BlogController(IBlogPostRepository blogPostRepository)
 	{
-		_context = context;
+		_blogPostRepository = blogPostRepository;
 	}
 
 	[HttpGet]
 	public ActionResult<List<BlogPost>> GetBlogPosts()
 	{
-		return Ok(_context.BlogPosts.OrderByDescending(x => x.Created));
+		return _blogPostRepository.GetAllBlogPosts().ToList();
 	}
 
 	[HttpGet("{url}")]
 	public ActionResult<BlogPost?> GetBlogPostByUrl(string url)
 	{
-		if (string.IsNullOrWhiteSpace(url))
-		{
-			return NotFound("This post does not exist.");
-		}
-
-		BlogPost? post = _context.BlogPosts.FirstOrDefault(x =>
-			string.Equals(x.Url.ToLower(), url.ToLower(), StringComparison.Ordinal));
-
-		if (post == null)
-		{
-			return NotFound("This post does not exist.");
-		}
-
-		return post;
+		return string.IsNullOrWhiteSpace(url)
+			? NotFound("This post does not exist.")
+			: _blogPostRepository.GetBlogPostByUrl(url);
 	}
 
 	[HttpPost]
-	public async Task<ActionResult<BlogPost>> CreateNewBlogPost(BlogPost blogPost)
+	public async Task<ActionResult<BlogPost>> CreateNewBlogPost(BlogPost? blogPost)
 	{
-		await _context.BlogPosts.AddAsync(blogPost);
-		await _context.SaveChangesAsync();
-
-		return Ok(blogPost);
+		return blogPost == null
+			? BadRequest($"This is a bad request the {nameof(blogPost)} is null!")
+			: await _blogPostRepository.CreateNewBlogPostAsync(blogPost);
 	}
 }
