@@ -1,5 +1,7 @@
 ﻿using System;
 
+using BlazorBlog.Shared.FakerCreators;
+
 namespace BlazorBlog.Client.Pages;
 
 [ExcludeFromCodeCoverage]

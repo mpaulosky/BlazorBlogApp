@@ -7,6 +7,9 @@
 // Project Name :  Shared.UnitTests
 // =============================================
 
+using BlazorBlog.Shared.FakerCreators;
+using BlazorBlog.Shared.Mapping;
+
 namespace Shared.UnitTests.GivenBlogPostDto;
 
 [ExcludeFromCodeCoverage]
@@ -19,7 +22,7 @@ public class WhenRequiringABlogPost
 		BlogPostDto expectedDto = BlogPostDtoCreator.GetNewBlogPostDto()!;
 
 		// Act
-		BlogPost result = new(expectedDto);
+		BlogPost result = expectedDto.ToBlogPost();
 
 		// Assert
 		result.Should().BeEquivalentTo(expectedDto,
@@ -35,7 +38,7 @@ public class WhenRequiringABlogPost
 		BlogPostDto expectedDto = BlogPostDtoCreator.GetNewBlogPostDto(true)!;
 
 		// Act
-		BlogPost result = new(expectedDto);
+		BlogPost result = expectedDto.ToBlogPost();
 
 		// Assert
 		result.Should().BeEquivalentTo(expectedDto,

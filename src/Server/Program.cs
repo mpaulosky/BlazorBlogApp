@@ -7,14 +7,13 @@
 // Project Name :  BlazorBlog.Server
 // =============================================
 
+using BlazorBlog.Server.Services;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                          throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+ConfigurationManager config = builder.Configuration;
+
 // Add services to the container.
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(connectionString));
-builder.Services.AddSingleton<IBlogPostRepository, BlogPostRepository>();
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+builder.ConfigureServices(config);
 
 WebApplication app = builder.Build();
 

@@ -21,24 +21,24 @@ public class BlogController : Controller
 	}
 
 	[HttpGet]
-	public ActionResult<List<BlogPost>> GetBlogPosts()
+	public async Task<ActionResult<List<BlogPost>>> GetAllAsync()
 	{
-		return _blogPostRepository.GetAllBlogPosts().ToList();
+		return (await _blogPostRepository.GetAllAsync()).ToList();
 	}
 
 	[HttpGet("{url}")]
-	public ActionResult<BlogPost?> GetBlogPostByUrl(string url)
+	public async Task<ActionResult<BlogPost?>> GetByUrlAsync(string url)
 	{
 		return string.IsNullOrWhiteSpace(url)
 			? NotFound("This post does not exist.")
-			: _blogPostRepository.GetBlogPostByUrl(url);
+			: await _blogPostRepository.GetByUrlAsync(url);
 	}
 
 	[HttpPost]
-	public async Task<ActionResult<BlogPost>> CreateNewBlogPost(BlogPost? blogPost)
+	public async Task<ActionResult<BlogPost>> CreateAsync(BlogPost? blogPost)
 	{
 		return blogPost == null
 			? BadRequest($"This is a bad request the {nameof(blogPost)} is null!")
-			: await _blogPostRepository.CreateNewBlogPostAsync(blogPost);
+			: await _blogPostRepository.CreateAsync(blogPost);
 	}
 }

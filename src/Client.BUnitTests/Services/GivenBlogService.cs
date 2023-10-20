@@ -1,5 +1,7 @@
 ﻿using System;
 
+using BlazorBlog.Shared.FakerCreators;
+
 using Flurl.Http;
 
 namespace BlazorBlog.Client.Services;
@@ -61,7 +63,7 @@ public class GivenBlogService : TestContext
 	{
 		// Arrange
 		_expectedBlogPost = BlogPostCreator.GetNewBlogPost(true);
-		var url = _expectedBlogPost.Url + "s";
+		var url = "test-url";
 
 		// Act
 		using var httpTest = new HttpTest();
@@ -74,7 +76,7 @@ public class GivenBlogService : TestContext
 		// Assert
 		await act.Should()
 			.ThrowAsync<FlurlHttpException>()
-			.WithMessage("Call failed with status code 404 (Not Found): GET https://test.com/api/blog/Reanna-Runtes");
+			.WithMessage("Call failed with status code 404 (Not Found): GET https://test.com/api/blog/test-url");
 	}
 
 	[Fact()]
