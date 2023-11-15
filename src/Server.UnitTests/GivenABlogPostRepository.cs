@@ -1,3 +1,12 @@
+// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     GivenABlogPostRepository.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlazorBlogApp
+// Project Name :  Server.UnitTests
+// =============================================
+
 using BlazorBlog.Shared.Database;
 using BlazorBlog.Shared.FakerCreators;
 
@@ -16,9 +25,9 @@ public class GivenABlogPostRepository
 		_expectedBlogPosts = BlogPostCreator.GetBlogPosts(3).ToList();
 		_expectedBlogPost = BlogPostCreator.GetNewBlogPost();
 
-		var _cursor = TestFixtures.GetMockCursor(_expectedBlogPosts);
+		var cursor = TestFixtures.GetMockCursor(_expectedBlogPosts);
 
-		_mockCollection = TestFixtures.GetMockCollection(_cursor);
+		_mockCollection = TestFixtures.GetMockCollection(cursor);
 
 		_mockContext = TestFixtures.GetMockContext();
 	}
