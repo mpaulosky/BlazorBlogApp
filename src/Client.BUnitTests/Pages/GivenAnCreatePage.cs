@@ -1,5 +1,7 @@
 ﻿using System;
 
+using BlazorBlog.Shared.FakerCreators;
+
 namespace BlazorBlog.Client.Pages;
 
 [ExcludeFromCodeCoverage]
@@ -30,11 +32,11 @@ public class GivenAnCreatePage : TestContext
 			<form >
 			  <div class="form-group mb-2">
 			    <label for="title">Title</label>
-			    <input id="title" class="form-control valid" value=""  >
+			    <input id="title" name:ignore class="form-control valid" value=""  >
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="url">Url</label>
-			    <input id="url" class="form-control valid" value=""  >
+			    <input id="url" name:ignore class="form-control valid" value=""  >
 			  </div>
 			  <div class="form-control-file mb-2">
 			    <label for="image">Image</label>
@@ -42,11 +44,11 @@ public class GivenAnCreatePage : TestContext
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="description">Description</label>
-			    <textarea id="description" class="form-control valid" value=""  ></textarea>
+			    <textarea id="description" name:ignore class="form-control valid" value=""  ></textarea>
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="content">Content</label>
-			    <textarea id="content" class="form-control valid" value=""  ></textarea>
+			    <textarea id="content" name:ignore class="form-control valid" value=""  ></textarea>
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="preview">Content Preview</label>
@@ -54,14 +56,14 @@ public class GivenAnCreatePage : TestContext
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="author">Author</label>
-			    <input id="author" class="form-control valid" value=""  >
+			    <input id="author" name:ignore class="form-control valid" value=""  >
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="date">Date Created</label>
-			    <input id="date" type="date" class="form-control valid" value:ignore  >
+			    <input id="date" type="date" name:ignore class="form-control valid" value:ignore  >
 			  </div>
 			  <div class="form-check mb-2">
-			    <input id="isPublished" type="checkbox" class="form-check-input valid" checked=""  >
+			    <input id="isPublished" type="checkbox" name:ignore class="form-check-input valid" checked="" value:ignore  >
 			    <label for="isPublished">Publish</label>
 			  </div>
 			  <button id="submit" type="submit" class="btn btn-primary">Create</button>
@@ -126,12 +128,12 @@ public class GivenAnCreatePage : TestContext
 			  </ul>
 			  <div class="form-group mb-2">
 			    <label for="title">Title</label>
-			    <input id="title" aria-invalid="true" class="form-control invalid" value=""  >
+			    <input id="title" aria-invalid="true" name:ignore class="form-control invalid" value=""  >
 			    <div class="validation-message">The Title field is required.</div>
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="url">Url</label>
-			    <input id="url" aria-invalid="true" class="form-control invalid" value=""  >
+			    <input id="url" aria-invalid="true" name:ignore class="form-control invalid" value=""  >
 			    <div class="validation-message">The Url field is required.</div>
 			  </div>
 			  <div class="form-control-file mb-2">
@@ -140,12 +142,12 @@ public class GivenAnCreatePage : TestContext
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="description">Description</label>
-			    <textarea id="description" aria-invalid="true" class="form-control invalid" value=""  ></textarea>
+			    <textarea id="description" aria-invalid="true" name:ignore class="form-control invalid" value=""  ></textarea>
 			    <div class="validation-message">The Description field is required.</div>
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="content">Content</label>
-			    <textarea id="content" aria-invalid="true" class="form-control invalid" value=""  ></textarea>
+			    <textarea id="content" aria-invalid="true" name:ignore class="form-control invalid" value=""  ></textarea>
 			    <div class="validation-message">The Content field is required.</div>
 			  </div>
 			  <div class="form-group mb-2">
@@ -154,15 +156,15 @@ public class GivenAnCreatePage : TestContext
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="author">Author</label>
-			    <input id="author" aria-invalid="true" class="form-control invalid" value=""  >
+			    <input id="author" aria-invalid="true" name:ignore class="form-control invalid" value=""  >
 			    <div class="validation-message">The Author field is required.</div>
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="date">Date Created</label>
-			    <input id="date" type="date" class="form-control valid" value:ignore  >
+			    <input id="date" type="date" name:ignore class="form-control valid" value:ignore  >
 			  </div>
 			  <div class="form-check mb-2">
-			    <input id="isPublished" type="checkbox" class="form-check-input valid" checked=""  >
+			    <input id="isPublished" type="checkbox" name:ignore class="form-check-input valid" checked="" value:ignore  >
 			    <label for="isPublished">Publish</label>
 			  </div>
 			  <button id="submit" type="submit" class="btn btn-primary">Create</button>

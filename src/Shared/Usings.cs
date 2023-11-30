@@ -9,4 +9,11 @@
 
 global using System.ComponentModel.DataAnnotations;
 
+global using BlazorBlog.Shared.Database;
+
 global using Bogus;
+
+global using MongoDB.Bson;
+global using MongoDB.Driver;
+
+global using static BlazorBlog.Shared.Helpers.CollectionNames;

@@ -7,6 +7,8 @@
 // Project Name :  Shared.UnitTests
 // =============================================
 
+using BlazorBlog.Shared.FakerCreators;
+
 namespace Shared.UnitTests.GivenBlogPostCreator;
 
 [ExcludeFromCodeCoverage]
@@ -38,8 +40,10 @@ public class WhenTestBlogPostRequired
 		BlogPost result = BlogPostCreator.GetNewBlogPost(true);
 
 		// Assert
+
 		result.Should().BeEquivalentTo(expected,
 			options => options
+				.Excluding(t => t.Id)
 				.Excluding(t => t.Created)
 				.Excluding(t => t.Updated));
 	}
@@ -87,6 +91,7 @@ public class WhenTestBlogPostRequired
 		result.First().Updated.Should().BeBefore(DateTime.Today);
 		result.Should().BeEquivalentTo(expected,
 			options => options
+				.Excluding(t => t.Id)
 				.Excluding(t => t.Created)
 				.Excluding(t => t.Updated));
 	}

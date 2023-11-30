@@ -7,10 +7,9 @@
 // Project Name :  BlazorBlog.Server
 // =============================================
 
-global using System.Diagnostics.CodeAnalysis;
-
-global using BlazorBlog.Server.Data;
 global using BlazorBlog.Shared;
+global using BlazorBlog.Shared.Data;
+global using BlazorBlog.Shared.Database;
 
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;

@@ -7,6 +7,8 @@
 // Project Name :  BlazorBlog.Server.Tests
 // =============================================
 
+using BlazorBlog.Shared.FakerCreators;
+
 namespace Server.UnitTests;
 
 [ExcludeFromCodeCoverage]
@@ -29,14 +31,14 @@ public class GivenABlogController
 	}
 
 	[Fact]
-	public void GetBlogPosts_ReturnsCorrectResult()
+	public async Task GetAllAsync_ReturnsCorrectResult()
 	{
 		// Arrange
 		var sut = UnitUnderTest();
 		SetupMocks();
 
 		// Act
-		var result = sut.GetBlogPosts();
+		var result = await sut.GetAllAsync();
 
 		// Assert
 		result.Value.Should().NotBeNull();
@@ -47,11 +49,11 @@ public class GivenABlogController
 				.Excluding(x => x.Updated));
 
 		_repositoryMock.Verify(x => x
-			.GetAllBlogPosts(), Times.Once);
+			.GetAllAsync(), Times.Once);
 	}
 
 	[Fact]
-	public void GetBlogPostByUrl_InvalidUrl_ReturnsNotFound()
+	public async Task GetByUrlAsync_InvalidUrl_ReturnsNotFound()
 	{
 		// Arrange
 		var sut = UnitUnderTest();
@@ -61,7 +63,7 @@ public class GivenABlogController
 		const string url = "";
 
 		// Act
-		var result = sut.GetBlogPostByUrl(url);
+		var result = await sut.GetByUrlAsync(url);
 
 		// Assert
 		result.Result.Should().BeOfType<NotFoundObjectResult>();
@@ -70,7 +72,7 @@ public class GivenABlogController
 	}
 
 	[Fact]
-	public void GetBlogPostByUrl_ValidUrl_ReturnsCorrectResult()
+	public async Task GetByUrlAsync_ValidUrl_ReturnsCorrectResult()
 	{
 		// Arrange
 		var sut = UnitUnderTest();
@@ -79,7 +81,7 @@ public class GivenABlogController
 		var url = _expectedBlogPost.Url;
 
 		// Act
-		var result = sut.GetBlogPostByUrl(url);
+		var result = await sut.GetByUrlAsync(url);
 
 		// Assert
 		result.Value.Should().NotBeNull();
@@ -90,11 +92,11 @@ public class GivenABlogController
 				.Excluding(x => x.Updated));
 
 		_repositoryMock.Verify(x => x
-			.GetBlogPostByUrl(It.IsAny<string>()), Times.Once);
+			.GetByUrlAsync(It.IsAny<string>()), Times.Once);
 	}
 
 	[Fact]
-	public async Task CreateNewBlogPost_AddsBlogPost()
+	public async Task CreateAsync_AddsBlogPost()
 	{
 		// Arrange
 		var sut = UnitUnderTest();
@@ -103,7 +105,7 @@ public class GivenABlogController
 		var blogPost = BlogPostCreator.GetNewBlogPost();
 
 		// Act
-		var result = await sut.CreateNewBlogPost(blogPost);
+		var result = await sut.CreateAsync(blogPost);
 
 		// Assert
 		result.Value.Should().NotBeNull();
@@ -114,11 +116,11 @@ public class GivenABlogController
 				.Excluding(x => x.Updated));
 
 		_repositoryMock.Verify(x => x
-			.CreateNewBlogPostAsync(It.IsAny<BlogPost>()), Times.Once);
+			.CreateAsync(It.IsAny<BlogPost>()), Times.Once);
 	}
 
 	[Fact]
-	public async Task CreateNewBlogPost_WithInValidData_ShouldReturnBadRequest()
+	public async Task CreateAsync_WithInValidData_ShouldReturnBadRequest()
 	{
 		// Arrange
 		var sut = UnitUnderTest();
@@ -128,7 +130,7 @@ public class GivenABlogController
 		BlogPost? blogPost = null;
 
 		// Act
-		var result = await sut.CreateNewBlogPost(blogPost);
+		var result = await sut.CreateAsync(blogPost);
 
 		// Assert
 		result.Result.Should().BeOfType<BadRequestObjectResult>();
@@ -139,12 +141,12 @@ public class GivenABlogController
 	private void SetupMocks()
 	{
 		_repositoryMock.Setup(x => x
-			.GetAllBlogPosts()).Returns(_expectedBlogPosts);
+			.GetAllAsync()).ReturnsAsync(_expectedBlogPosts);
 
 		_repositoryMock.Setup(x => x
-			.GetBlogPostByUrl(It.IsAny<string>())).Returns(_expectedBlogPost);
+			.GetByUrlAsync(It.IsAny<string>())).ReturnsAsync(_expectedBlogPost);
 
 		_repositoryMock.Setup(x => x
-			.CreateNewBlogPostAsync(It.IsAny<BlogPost>())).ReturnsAsync(_expectedBlogPost);
+			.CreateAsync(It.IsAny<BlogPost>())).ReturnsAsync(_expectedBlogPost);
 	}
 }
